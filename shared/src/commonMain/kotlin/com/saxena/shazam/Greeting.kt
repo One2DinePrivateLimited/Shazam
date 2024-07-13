@@ -1,5 +1,6 @@
 package com.saxena.shazam
 
+
 class Greeting {
     private val platform: Platform = getPlatform()
 
