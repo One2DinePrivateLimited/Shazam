@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -8,12 +9,14 @@ plugins {
 kotlin {
     androidTarget {
         compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_1_8)
+                }
             }
         }
     }
-    
+
     val xcf = XCFramework()
     listOf(
         iosX64(),
@@ -28,17 +31,38 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            //put your multiplatform dependencies here
+        val commonMain by getting {
+            dependencies {
+                // put your multiplatform dependencies here
+            }
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+
+            }
+        }
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+
+            }
         }
     }
 }
 
 android {
-    namespace = "com.saxena.shazam"
+    namespace = "com.one2dine.shazam"
     compileSdk = 34
     defaultConfig {
         minSdk = 24
