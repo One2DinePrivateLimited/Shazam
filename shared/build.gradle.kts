@@ -33,6 +33,7 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.serialization.json)
 
 
             implementation(libs.ktor.client.core)
@@ -42,6 +43,11 @@ kotlin {
 
             implementation(libs.ktor.client.logging)
             implementation(libs.multiplatform.settings.no.arg)
+
+            implementation("io.ktor:ktor-client-core:2.0.0")
+            implementation("io.ktor:ktor-client-json:2.0.0")
+            implementation("io.ktor:ktor-client-serialization:2.0.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

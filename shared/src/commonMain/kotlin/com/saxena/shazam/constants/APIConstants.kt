@@ -18,13 +18,15 @@ enum class SourceApp {
 enum class APIEventType{
     REQ_OTP,
     LOGIN,
-    SIGN_UP
+    SIGN_UP,
+    MENU
 }
 
 object APIPath{
     const val REQ_OTP = "/"
     const val LOGIN = "/"
     const val SIGN_UP = "/"
+    const val  MENU = "/"
 }
 
 fun getAPIURL(method: APIEventType, route: String): String{
@@ -33,6 +35,7 @@ fun getAPIURL(method: APIEventType, route: String): String{
     return when(method){
         APIEventType.REQ_OTP -> "$baseURL$route$REQ_OTP"
         APIEventType.LOGIN -> TODO()
+        APIEventType.MENU -> TODO()
         else -> {
             return ""
         }
