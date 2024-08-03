@@ -1,7 +1,7 @@
-package com.saxena.shazam.constants
+package com.one2dine.shazam.constants
 
-import com.saxena.shazam.constants.APIPath.REQ_OTP
-import com.saxena.shazam.helpers.ServerURL
+import com.one2dine.shazam.constants.APIPath.REQ_OTP
+import com.one2dine.shazam.helpers.ServerURL
 
 enum class RequestType {
     GET,

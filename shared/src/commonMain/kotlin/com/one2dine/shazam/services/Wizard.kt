@@ -1,7 +1,7 @@
-package com.saxena.shazam.services
+package com.one2dine.shazam.services
 
-import com.saxena.shazam.constants.APIEventType
-import com.saxena.shazam.dataModel.requestModels.MenuRequest
+import com.one2dine.shazam.constants.APIEventType
+import com.one2dine.shazam.dataModel.requestModels.MenuRequest
 import io.ktor.http.Headers
 
 

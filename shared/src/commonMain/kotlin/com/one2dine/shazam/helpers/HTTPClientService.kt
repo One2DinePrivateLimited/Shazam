@@ -1,4 +1,4 @@
-package com.saxena.shazam.helpers
+package com.one2dine.shazam.helpers
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
@@ -25,22 +25,22 @@ import kotlinx.serialization.Serializable
 object HTTPClientService {
 
     val httpClient = HttpClient {
-        install(ContentNegotiation){
+        install(ContentNegotiation) {
 //            kotlinx.serialization.json.Json
 //           json(json)
         }
 
-        install(DefaultRequest){
+        install(DefaultRequest) {
             header(HttpHeaders.ContentType, ContentType.Application.Json)
         }
 
-        install(Logging){
-           logger = object : Logger {
-               override fun log(message: String) {
-                   println(message)
-               }
+        install(Logging) {
+            logger = object : Logger {
+                override fun log(message: String) {
+                    println(message)
+                }
 //               level = Loglevel.ALL
-           }
+            }
         }
     }
 

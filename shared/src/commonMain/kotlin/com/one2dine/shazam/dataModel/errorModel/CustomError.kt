@@ -1,6 +1,6 @@
-package com.saxena.shazam.dataModel.errorModel
+package com.one2dine.shazam.dataModel.errorModel
 
-import com.saxena.shazam.constants.NA
+import com.one2dine.shazam.constants.NA
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

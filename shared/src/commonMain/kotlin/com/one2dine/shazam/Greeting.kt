@@ -1,4 +1,4 @@
-package com.saxena.shazam
+package com.one2dine.shazam
 
 
 class Greeting {

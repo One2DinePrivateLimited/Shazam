@@ -1,14 +1,14 @@
-package com.saxena.shazam.Network
+package com.one2dine.shazam.Network
 
-import com.saxena.shazam.ApplicationDispatcher
-import com.saxena.shazam.constants.APIEventType
-import com.saxena.shazam.constants.NO_RESPONSE
-import com.saxena.shazam.constants.RequestType
-import com.saxena.shazam.constants.getAPIURL
-import com.saxena.shazam.dataModel.errorModel.CustomError
-import com.saxena.shazam.dataModel.errorModel.ErrorModel
-import com.saxena.shazam.dataModel.requestModels.Header
-import com.saxena.shazam.helpers.HTTPClientService
+import com.one2dine.shazam.ApplicationDispatcher
+import com.one2dine.shazam.constants.APIEventType
+import com.one2dine.shazam.constants.NO_RESPONSE
+import com.one2dine.shazam.constants.RequestType
+import com.one2dine.shazam.constants.getAPIURL
+import com.one2dine.shazam.dataModel.errorModel.CustomError
+import com.one2dine.shazam.dataModel.errorModel.ErrorModel
+import com.one2dine.shazam.dataModel.requestModels.Header
+import com.one2dine.shazam.helpers.HTTPClientService
 import io.ktor.*
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.ServerResponseException

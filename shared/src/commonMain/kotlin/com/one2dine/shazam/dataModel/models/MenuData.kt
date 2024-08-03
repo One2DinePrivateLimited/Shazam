@@ -1,4 +1,4 @@
-package com.saxena.shazam.dataModel.models
+package com.one2dine.shazam.dataModel.models
 
 import kotlinx.serialization.Serializable
 

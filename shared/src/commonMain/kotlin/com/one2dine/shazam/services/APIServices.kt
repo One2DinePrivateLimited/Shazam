@@ -1,14 +1,14 @@
-package com.saxena.shazam.services
+package com.one2dine.shazam.services
 
-import com.saxena.shazam.ApplicationDispatcher
-import com.saxena.shazam.constants.APIEventType
+import com.one2dine.shazam.ApplicationDispatcher
+import com.one2dine.shazam.constants.APIEventType
 
-import com.saxena.shazam.constants.APIEventType.MENU
-import com.saxena.shazam.constants.APIEventType.REQ_OTP
-import com.saxena.shazam.constants.APIEventType.LOGIN
-import com.saxena.shazam.constants.APIEventType.SIGN_UP
-import com.saxena.shazam.dataModel.models.MenuData
-import com.saxena.shazam.dataModel.requestModels.MenuRequest
+import com.one2dine.shazam.constants.APIEventType.MENU
+import com.one2dine.shazam.constants.APIEventType.REQ_OTP
+import com.one2dine.shazam.constants.APIEventType.LOGIN
+import com.one2dine.shazam.constants.APIEventType.SIGN_UP
+import com.one2dine.shazam.dataModel.models.MenuData
+import com.one2dine.shazam.dataModel.requestModels.MenuRequest
 
 import io.ktor.http.Headers
 import kotlinx.coroutines.CoroutineScope

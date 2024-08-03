@@ -1,6 +1,6 @@
-package com.saxena.shazam.helpers
-import com.saxena.shazam.constants.BASE_URL
-import com.saxena.shazam.constants.PRINT_LOGS
+package com.one2dine.shazam.helpers
+import com.one2dine.shazam.constants.BASE_URL
+import com.one2dine.shazam.constants.PRINT_LOGS
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.get
 

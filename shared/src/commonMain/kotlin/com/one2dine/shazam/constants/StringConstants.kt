@@ -1,4 +1,4 @@
-package com.saxena.shazam.constants
+package com.one2dine.shazam.constants
 
 
 
