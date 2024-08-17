@@ -8,7 +8,7 @@ open class ApiException(
     val code: Int,
     errorBody: String,
     innerException: Throwable? = null
-) : IOException(innerException.toString()) {
+) : IOException(innerException?.message ?: "An unknown error occurred") {
 
     override var message: String? = null
     var errorDetails: Map<String, Any>? = null
