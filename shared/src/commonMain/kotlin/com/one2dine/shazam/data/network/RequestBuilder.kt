@@ -1,13 +1,13 @@
-package com.one2dine.shazam.network
+package com.one2dine.shazam.data.network
 
 import com.one2dine.shazam.ApplicationDispatcher
 import com.one2dine.shazam.constants.APIEventType
 import com.one2dine.shazam.constants.NO_RESPONSE
 import com.one2dine.shazam.constants.RequestType
 import com.one2dine.shazam.constants.getAPIURL
-import com.one2dine.shazam.dataModel.errorModel.CustomError
-import com.one2dine.shazam.dataModel.errorModel.ErrorModel
-import com.one2dine.shazam.dataModel.requestModels.Header
+import com.one2dine.shazam.data.model.error.CustomError
+import com.one2dine.shazam.data.model.error.ErrorModel
+import com.one2dine.shazam.data.model.request.Header
 import com.one2dine.shazam.helpers.HTTPClientService
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.request.HttpRequestBuilder

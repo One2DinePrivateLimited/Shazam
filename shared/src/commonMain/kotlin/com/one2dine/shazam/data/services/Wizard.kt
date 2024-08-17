@@ -1,4 +1,4 @@
-package com.one2dine.shazam.services
+package com.one2dine.shazam.data.services
 
 import com.one2dine.shazam.constants.APIEventType
 import io.ktor.http.Headers
