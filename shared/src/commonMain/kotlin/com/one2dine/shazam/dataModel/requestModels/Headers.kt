@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Header(
     @SerialName("token")
-    val token : String,
+    val token: String,
     @SerialName("route")
-    val route : String
+    val route: String
 
 )

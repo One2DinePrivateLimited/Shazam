@@ -1,7 +1,7 @@
 package com.one2dine.shazam.services
 
 import com.one2dine.shazam.ApplicationDispatcher
-import com.one2dine.shazam.Network.RequestBuilder
+import com.one2dine.shazam.network.RequestBuilder
 import com.one2dine.shazam.constants.APIEventType
 
 import com.one2dine.shazam.dataModel.models.MenuData
@@ -11,11 +11,11 @@ import io.ktor.http.Headers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
- object APIServices {
+object APIServices {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + ApplicationDispatcher)
 
-     inline fun <reified requestType, urlParameterType, reified responseType> makeHTTPCall(
+    inline fun <reified requestType, urlParameterType, reified responseType> makeHTTPCall(
         headers: Headers,
         apiEventType: APIEventType,
         request: requestType,
@@ -23,19 +23,19 @@ import kotlinx.coroutines.SupervisorJob
         crossinline success: (Double, responseType) -> Unit,
         crossinline failure: (String) -> Unit
 
-    ){
+    ) {
 
 
-       RequestBuilder.createHTTPResponse(
-           apiEventType,
-           apiType = TODO(),
-           header = TODO(),
-           urlParams = TODO(),
-           requestBody = request,
-           success = success,
-           failure = failure,
+        RequestBuilder.createHTTPResponse(
+            apiEventType,
+            apiType = TODO(),
+            header = TODO(),
+            urlParams = TODO(),
+            requestBody = request,
+            success = success,
+            failure = failure,
 
-       )
+            )
 //        when(apiEventType){
 //
 //            REQ_OTP -> TODO()
@@ -62,7 +62,7 @@ import kotlinx.coroutines.SupervisorJob
         request: MenuRequest,
         success: (Double, MenuData) -> Unit,
         failure: (String) -> Unit
-    ){
+    ) {
 
     }
 
@@ -71,7 +71,7 @@ import kotlinx.coroutines.SupervisorJob
         request: MenuRequest,
         success: (Double, MenuData) -> Unit,
         failure: (String) -> Unit
-    ){
+    ) {
 
     }
 

@@ -1,4 +1,4 @@
-package com.one2dine.shazam.Network
+package com.one2dine.shazam.network
 
 import com.one2dine.shazam.ApplicationDispatcher
 import com.one2dine.shazam.constants.APIEventType
@@ -28,23 +28,21 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
 object RequestBuilder {
-
-
-     inline fun <reified requestType, reified responseType> createHTTPResponse(
-         eventType: APIEventType,
-         apiType: RequestType,
-         header: Header,
-         urlParams: String = "",
-         requestBody: requestType?,
-         crossinline success: (Double, responseType) -> Unit,
-         crossinline failure: (String) -> Unit
+    inline fun <reified requestType, reified responseType> createHTTPResponse(
+        eventType: APIEventType,
+        apiType: RequestType,
+        header: Header,
+        urlParams: String = "",
+        requestBody: requestType?,
+        crossinline success: (Double, responseType) -> Unit,
+        crossinline failure: (String) -> Unit
     ) {
         GlobalScope.apply {
             launch(ApplicationDispatcher) {
-                var apiResponseTime  = 0.0
+                var apiResponseTime = 0.0
 
-                try{
-                    if (header.token != ""){
+                try {
+                    if (header.token != "") {
 //                        val rawResult = when (eventType) {
 //                            APIEventType.REQ_OTP -> {
 //                                val request = requestBody
@@ -63,7 +61,7 @@ object RequestBuilder {
 //
 //                        }
 
-                        val rawResult = makeAPICall<requestType,responseType>(
+                        val rawResult = makeAPICall<requestType, responseType>(
                             eventType,
                             apiType,
                             header,
@@ -73,7 +71,7 @@ object RequestBuilder {
 
 
                     }
-                }catch (se : ServerResponseException){
+                } catch (se: ServerResponseException) {
                     se.message.let {
 //                    printLogs(it)
                     }
@@ -89,23 +87,21 @@ object RequestBuilder {
             }
 
 
-
-
         }
 
     }
 }
 
-suspend fun getErrorMessage(httpResponse: HttpResponse): String{
+suspend fun getErrorMessage(httpResponse: HttpResponse): String {
     return try {
         getErrorMessage(httpResponse.bodyAsText())
-    }catch (e: Exception){
+    } catch (e: Exception) {
         NO_RESPONSE
     }
 }
 
-fun getErrorMessage(message: String): String{
-    return if (message.isNullOrEmpty() && message.trim().startsWith("{")){
+fun getErrorMessage(message: String? = null): String {
+    return if (message.isNullOrEmpty() && message!!.trim().startsWith("{")) {
         try {
             val pt = Json.decodeFromString<ErrorModel>(message)
             if (!pt.message.isNullOrEmpty())
@@ -114,24 +110,24 @@ fun getErrorMessage(message: String): String{
                 pt.error
             else
                 message
-        }catch (ex: Exception){
+        } catch (ex: Exception) {
             NO_RESPONSE
         }
-    }else
+    } else
         NO_RESPONSE
 }
 
-fun responseTime(result: HttpResponse): Double{
-    return ((result.responseTime.timestamp - result.requestTime.timestamp).toDouble()/ 100f)
+fun responseTime(result: HttpResponse): Double {
+    return ((result.responseTime.timestamp - result.requestTime.timestamp).toDouble() / 100f)
 }
 
-suspend inline fun <reified  requestType, reified responseType> makeAPICall(
+suspend inline fun <reified requestType, reified responseType> makeAPICall(
     eventType: APIEventType,
     apiType: RequestType,
     header: Header,
     urlParams: Array<String>,
     requestBody: requestType?,
-): HttpResponse{
+): HttpResponse {
     val httpClient = HTTPClientService.httpClient
     val apiURL = getAPIURL(method = eventType, urlParams, header.route)
     val builder: HttpRequestBuilder = HttpRequestBuilder().apply {
@@ -140,12 +136,12 @@ suspend inline fun <reified  requestType, reified responseType> makeAPICall(
             append(HttpHeaders.Authorization, header.token)
         }
         url(apiURL)
-        if (requestBody != null){
+        if (requestBody != null) {
             setBody(requestBody)
         }
     }
 
-    val rawResult: HttpResponse = when(apiType){
+    val rawResult: HttpResponse = when (apiType) {
         RequestType.GET -> httpClient.get(builder)
         RequestType.POST -> httpClient.post(builder)
         RequestType.PUT -> httpClient.put(builder)
