@@ -1,11 +1,11 @@
-package com.one2dine.shazam.services
+package com.one2dine.shazam.data.services
 
 import com.one2dine.shazam.ApplicationDispatcher
-import com.one2dine.shazam.network.RequestBuilder
+import com.one2dine.shazam.data.network.RequestBuilder
 import com.one2dine.shazam.constants.APIEventType
 
-import com.one2dine.shazam.dataModel.models.MenuData
-import com.one2dine.shazam.dataModel.requestModels.MenuRequest
+import com.one2dine.shazam.data.model.response.MenuData
+import com.one2dine.shazam.data.model.request.MenuRequest
 
 import io.ktor.http.Headers
 import kotlinx.coroutines.CoroutineScope

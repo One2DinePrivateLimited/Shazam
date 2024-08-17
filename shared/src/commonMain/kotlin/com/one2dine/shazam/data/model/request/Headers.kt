@@ -1,4 +1,4 @@
-package com.one2dine.shazam.dataModel.requestModels
+package com.one2dine.shazam.data.model.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
