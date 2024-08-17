@@ -14,9 +14,9 @@ data class CustomError(
 data class ErrorModel(
     @SerialName("status")
     val status: String? = NA,
-    @SerialName("status")
+    @SerialName("message")
     val message: String? = NA,
-    @SerialName("status")
+    @SerialName("error")
     val error: String? = NA
 )
 
