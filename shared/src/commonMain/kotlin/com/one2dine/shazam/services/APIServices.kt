@@ -4,15 +4,6 @@ import com.one2dine.shazam.ApplicationDispatcher
 import com.one2dine.shazam.Network.RequestBuilder
 import com.one2dine.shazam.constants.APIEventType
 
-import com.one2dine.shazam.constants.APIEventType.REQ_OTP
-import com.one2dine.shazam.constants.APIEventType.LOGIN
-import com.one2dine.shazam.constants.APIEventType.SIGN_UP
-import com.one2dine.shazam.constants.APIEventType.ADD_MENU
-import com.one2dine.shazam.constants.APIEventType.GET_MENU
-import com.one2dine.shazam.constants.APIEventType.UPDATE_MENU
-import com.one2dine.shazam.constants.APIEventType.ADD_CATEGORY
-import com.one2dine.shazam.constants.APIEventType.UPDATE_MENU_AVAILABILITY
-
 import com.one2dine.shazam.dataModel.models.MenuData
 import com.one2dine.shazam.dataModel.requestModels.MenuRequest
 
@@ -20,17 +11,17 @@ import io.ktor.http.Headers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
-internal object APIServices {
+ object APIServices {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + ApplicationDispatcher)
 
-    inline fun <reified requestType, urlParameterType, reified responseType> makeHTTPCall(
+     inline fun <reified requestType, urlParameterType, reified responseType> makeHTTPCall(
         headers: Headers,
         apiEventType: APIEventType,
         request: requestType,
         urlParams: urlParameterType,
         crossinline success: (Double, responseType) -> Unit,
-        crossinline failure: (String?) -> Unit
+        crossinline failure: (String) -> Unit
 
     ){
 

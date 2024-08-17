@@ -9,8 +9,6 @@ import com.one2dine.shazam.dataModel.errorModel.CustomError
 import com.one2dine.shazam.dataModel.errorModel.ErrorModel
 import com.one2dine.shazam.dataModel.requestModels.Header
 import com.one2dine.shazam.helpers.HTTPClientService
-import io.ktor.*
-import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.delete
@@ -24,12 +22,8 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
-import io.ktor.http.append
 import io.ktor.http.contentType
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
@@ -37,13 +31,13 @@ object RequestBuilder {
 
 
      inline fun <reified requestType, reified responseType> createHTTPResponse(
-        eventType: APIEventType,
-        apiType: RequestType,
-        header: Header,
-        urlParams: String = "",
-        requestBody: requestType?,
-        crossinline success: (Double, responseType) -> Unit,
-        crossinline failure: (String?) -> Unit
+         eventType: APIEventType,
+         apiType: RequestType,
+         header: Header,
+         urlParams: String = "",
+         requestBody: requestType?,
+         crossinline success: (Double, responseType) -> Unit,
+         crossinline failure: (String) -> Unit
     ) {
         GlobalScope.apply {
             launch(ApplicationDispatcher) {
