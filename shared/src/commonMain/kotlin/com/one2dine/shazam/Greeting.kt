@@ -1,5 +1,6 @@
 package com.one2dine.shazam
 
+
 class Greeting {
     private val platform: Platform = getPlatform()
 
