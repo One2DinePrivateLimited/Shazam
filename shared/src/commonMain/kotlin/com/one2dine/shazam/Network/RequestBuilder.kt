@@ -43,7 +43,7 @@ object RequestBuilder {
         urlParams: String = "",
         requestBody: requestType?,
         crossinline success: (Double, responseType) -> Unit,
-        crossinline failure: (CustomError?) -> Unit
+        crossinline failure: (String?) -> Unit
     ) {
         GlobalScope.apply {
             launch(ApplicationDispatcher) {
@@ -51,16 +51,33 @@ object RequestBuilder {
 
                 try{
                     if (header.token != ""){
-                        val rawResult = when (eventType) {
-                            APIEventType.REQ_OTP -> {
-                                val request = requestBody
+//                        val rawResult = when (eventType) {
+//                            APIEventType.REQ_OTP -> {
+//                                val request = requestBody
+//
+//                            }
+//                            APIEventType.LOGIN -> TODO()
+//                            APIEventType.SIGN_UP -> TODO()
+//
+//                            APIEventType.GET_MENU -> {
+//
+//                            }
+//                            APIEventType.ADD_MENU -> TODO()
+//                            APIEventType.UPDATE_MENU -> TODO()
+//                            APIEventType.ADD_CATEGORY -> TODO()
+//                            APIEventType.UPDATE_MENU_AVAILABILITY -> TODO()
+//
+//                        }
 
-                            }
+                        val rawResult = makeAPICall<requestType,responseType>(
+                            eventType,
+                            apiType,
+                            header,
+                            arrayOf(urlParams),
+                            requestBody
+                        )
 
-                            APIEventType.LOGIN -> TODO()
-                            APIEventType.SIGN_UP -> TODO()
-                            APIEventType.MENU -> TODO()
-                        }
+
                     }
                 }catch (se : ServerResponseException){
                     se.message.let {
@@ -72,7 +89,7 @@ object RequestBuilder {
                             se.response.status.value,
                             getErrorMessage(se.response),
                             responseTime(se.response)
-                        )
+                        ).toString()
                     )
                 }
             }
@@ -81,6 +98,7 @@ object RequestBuilder {
 
 
         }
+
     }
 }
 
@@ -117,11 +135,11 @@ suspend inline fun <reified  requestType, reified responseType> makeAPICall(
     eventType: APIEventType,
     apiType: RequestType,
     header: Header,
-    urlParams: String = "",
+    urlParams: Array<String>,
     requestBody: requestType?,
 ): HttpResponse{
     val httpClient = HTTPClientService.httpClient
-    val apiURL = getAPIURL(method = eventType,header.route) + urlParams
+    val apiURL = getAPIURL(method = eventType, urlParams, header.route)
     val builder: HttpRequestBuilder = HttpRequestBuilder().apply {
         contentType(ContentType.Application.Json)
         headers {
